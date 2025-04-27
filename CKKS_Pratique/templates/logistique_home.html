@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prédiction Logistique</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prédiction Logistique sur les Données Patient</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="sexe">Sexe:</label>
+                <select name="sexe" id="sexe" required>
+                    <option value="1">Homme</option>
+                    <option value="0">Femme</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="cigare">Nombre de Cigarettes par jour:</label>
+                <input type="number" name="cigare" required>
+            </div>
+            <div class="form-group">
+                <label for="avc">Antécédent AVC:</label>
+                <select name="avc" id="avc" required>
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hyper">Hypertension Antécédent:</label>
+                <select name="hyper" id="hyper" required>
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="colesterol">Taux de Cholestérol:</label>
+                <input type="number" name="colesterol" required>
+            </div>
+            <div class="form-group">
+                <label for="frequence0">Fréquence Arterielle:</label>
+                <input type="number" name="frequence0" required>
+            </div>
+            <div class="form-group">
+                <label for="frequence1">Fréquence Cardiaque :</label>
+                <input type="number" name="frequence1" required>
+            </div>
+            <div class="form-group">
+                <label for="glucose">Niveau de Glucose:</label>
+                <input type="number" name="glucose" required>
+            </div>
+            <button type="submit">Faire la Prédiction</button>
+        </form>
+
+        {% if prediction_patient_clair %}
+        <div class="result-section">
+            <div class="result-box">
+                <h3>Prédiction avec les Données Claires</h3>
+                <p><strong>Prédiction:</strong> {{ prediction_patient_clair }}</p>
+                <p class="fa0"><strong>Précision des performances du modele :</strong> {{ precision_performance_clairs }}</p>
+                <p><strong>Temps de Prédiction (Clair):</strong> {{ temps_mis_clair }} secondes</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Prédiction avec les Données Chiffrées</h3>
+                <p><strong>Prédiction:</strong> {{ prediction_chiffre }}</p>
+                <p class="fa0"><strong>Précision des performances du modele :</strong> {{ precision_performance_chiffre }}</p>
+                <p><strong>Temps de Prédiction (Chiffré):</strong> {{ temps_dechiffre }} secondes</p>
+            </div>
+
+            <div class="error-display">
+                <p><strong>Erreur entre les Prédictions:</strong> {{ erreur_de_prediction }}</p>
+                <p><strong> Difference de performance:</strong> {{ difference }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

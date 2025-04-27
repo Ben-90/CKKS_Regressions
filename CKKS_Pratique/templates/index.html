@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédiction avec TenSEAL</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/style1.css')}}">
+</head>
+<body style="background-image: url('{{ url_for('static', filename='images/iris.png') }}')">
+    
+    <h1>Faire une prédiction sur la longueur du petal d'iris</h1>
+    <form method="post">
+        <label for="a">Entrer une valeur :</label>
+        <input type="number" name="a" step="any" required>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    {% if predict_clair %}
+    <section class="result-section">
+        <h2>Résultats de la Régression Linéaire</h2>
+
+        <div class="comparison-container">
+            <div class="comparison-box">
+                <h3>Données en clair</h3>
+                <p><strong>Texte :</strong> {{ texte_clair }}</p>
+                <p><strong>Prédiction :</strong> {{ predict_clair }}</p>
+                <p class="fa1"><strong>performance du modele sur les clairs:</strong> {{ performance_du_modele_claire }}</p>
+                <p><strong>Temps :</strong> {{ temp_pris_clair | round(4) }} s</p>
+            </div>
+
+            <div class="comparison-box">
+                <h3>Données chiffrées</h3>
+                <p><strong>Texte :</strong> {{ text_chiffre }}</p>
+                <p><strong>Prédiction déchiffrée :</strong> {{ decrypted_predict_y }}</p>
+                <p class="fa1"><strong>performance du modele sur les chiffrés :</strong> {{ performance_du_modele_chiffre }}</p>
+                <p><strong>Temps :</strong> {{ temps_chiffre | round(4) }} s</p>
+            </div>
+        </div>
+
+        <div class="error-display">
+            <p><strong>Erreur absolue entre les prédictions :</strong> {{ erreur_de_prediction | round(6) }}</p>
+            <p><strong> Difference de performance :</strong> {{ diff_performance}}</p>
+        </div>
+
+        <div class="chart-gallery">
+            <div>
+                <h4>Erreur de Prédiction</h4>
+                <img src="{{ url_for('static', filename='data_linear/'+errors_img) }}" alt="Erreur">
+            </div>
+            <div>
+                <h4>Prédictions sur Données Chiffrées</h4>
+                <img src="{{ url_for('static', filename='data_linear/'+enc_preds_img) }}" alt="Prédictions Chiffrées">
+            </div>
+            <div>
+                <h4>Prédictions  sur les données clairess</h4>
+                <img src="{{ url_for('static', filename='data_linear/'+ preds_img) }}" alt="Prédictions Réelles">
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+</body>
+</html>

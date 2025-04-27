@@ -1,0 +1,137 @@
+/* --- RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* --- CONTAINER --- */
+  #container {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* --- HEADER --- */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e3a8a;
+    padding: 1em 5%;
+  }
+  
+  .header img.image0 {
+    height: 60px;
+  }
+  
+  .navbar {
+    display: flex;
+    gap: 2em;
+  }
+  
+  .navbar .fa a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar .fa a:hover {
+    color: #a8c1ff;
+  }
+  
+  /* --- BANDEAU IMAGE --- */
+  .tag1 {
+    height: 200px; 
+    margin-bottom: 3em;
+  }
+  
+  /* --- SECTION CENTRALE (ML + CRYPTO) --- */
+  .tag2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4em 10%;
+    background: #f4f8fc;
+    border-top: 4px solid #1e3a8a;
+  }
+  
+  .content-left {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    padding: 1em;
+  }
+  
+  .content-left h1 {
+    font-size: 2.5em;
+    color: #1e3a8a;
+    margin-bottom: 0.5em;
+  }
+  
+  .content-left p {
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 2em;
+  }
+  
+  .content-right {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    padding: 1em;
+  }
+  
+  .content-right img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* --- BOUTONS --- */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 0.8em 1.5em;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #163265;
+    transform: scale(1.03);
+  }
+  
+  /* --- RESPONSIVE --- */
+  @media (max-width: 768px) {
+    .tag2 {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .content-left,
+    .content-right {
+      max-width: 100%;
+    }
+  }
+  

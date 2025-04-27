@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+  <title>Étude Comparative</title>
+</head>
+<body>
+  <section id="container">
+    <!-- En-tête -->
+    <section class="header">
+      <div>
+        <img src="{{url_for('static', filename='images/ucad.png')}}" alt="logo" class="image0" />
+      </div>
+      <div class="navbar">
+        <div class="fa"><a href="#">Accueil</a></div>
+        <div class="fa"><a href="{{url_for('lineaire')}}">RLineaire+CKKS</a></div>
+        <div class="fa"><a href="{{url_for('logistique')}}">RLogistique+CKKS</a></div>
+      </div>
+    </section>
+
+    <!-- Bandeau image -->
+    <section class="tag1" style="background-image: url('{{ url_for('static', filename='images/lacga.png') }}')">
+    </section>
+
+    <!-- Contenu principal -->
+    <section class="tag2">
+        <div class="content-left">
+          <h1>Cryptographie & Machine Learning</h1>
+          <p>
+            La <strong>cryptographie homomorphe</strong> permet de traiter des données tout en les gardant chiffrées, 
+            garantissant la confidentialité des informations sensibles.
+            <br>
+            En parallèle, le <strong>machine learning</strong> exploite ces données pour générer des modèles intelligents,
+            capables d’apprendre, d’anticiper, et de s’adapter, sans compromettre la sécurité.
+            <br>
+            Dans le cadre de notre étude, nous avons implémenté 
+            <strong>un algorithme de régression linéaire</strong> ainsi qu’
+            <strong>un algorithme de régression logistique</strong>, les deux combinés avec du <strong>CKKS</strong>
+            un algorithme de chiffrement homomorphe.
+
+          </p>
+        <form action="get">
+          <div class="button-group">
+            <button type="submit" formaction="/lineaire" class="btn">Tester la regression linéaire avec le CKKS</button>
+            <button type="submit" formaction="/logistique" class="btn">Tester la regression logistique avec le CKKS</button>
+          </div>
+         </div>
+       </form>
+        <div class="content-right">
+          <img src="{{url_for('static', filename='images/crypto_machine.png')}}" alt="Crypto & ML" />
+        </div>
+      </section>
+      
+</body>
+</html>

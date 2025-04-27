@@ -1,0 +1,138 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-size: cover;
+    /* background-position: center; */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2em;
+    color: #1e3a8a;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: #fff;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    padding: 0.5em;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 1em;
+}
+
+button {
+    padding: 0.7em 1.5em;
+    border: none;
+    border-radius: 6px;
+    background-color: #1e3a8a;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2949c6;
+}
+
+.result-section {
+    padding: 4em 10%;
+    background-color: #f8f9fc;
+    border-top: 3px solid #1e3a8a;
+}
+
+.result-section h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 2em;
+    color: #1e3a8a;
+}
+
+.comparison-container {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.comparison-box {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background: #ffffff;
+    padding: 1.5em;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.comparison-box h3 {
+    color: #1e3a8a;
+    margin-bottom: 1em;
+}
+
+.comparison-box p {
+    margin: 0.5em 0;
+    font-size: 1em;
+}
+
+.error-display {
+    text-align: center;
+    margin: 2em 0;
+    font-size: 1.2em;
+    color: #d32f2f;
+}
+
+.chart-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2em;
+    margin-top: 3em;
+}
+
+.chart-gallery div {
+    text-align: center;
+    flex: 1;
+    min-width: 280px;
+}
+
+.chart-gallery img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .comparison-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chart-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.fa1{
+    color: blue;
+    background-color: yellow;
+}
