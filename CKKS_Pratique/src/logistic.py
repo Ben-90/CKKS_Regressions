@@ -59,13 +59,14 @@ def train(model, optim, criterion, x, y, epochs=10):
         loss = criterion(out, y)
         loss.backward()
         optim.step()
-        print(f"Loss at epoch {e}: {loss.data:.6f}")
+        print(f"Loss at epoch {e}: {loss.data}")
     return model
 
 def accuracy(model, x, y):
     out = model(x)
     correct = torch.abs(y - out) < 0.5
     return correct.float().mean()
+
 
 # ============================== #
 # Fonctions pour normaliser un échantillon
@@ -88,9 +89,12 @@ def donnee_standards(sample):
 # ============================== #
 # Script principal de la prediction sur les données clairs
 # ============================== #
-
+torch.random.manual_seed(73)
+random.seed(73)
 x_train, y_train, x_test, y_test = load_data()
 n_features = x_train.shape[1]
+
+#print(x_train)
 
 # On cree notre model et son evaluation 
 model = LR(n_features)   
@@ -100,6 +104,7 @@ model = train(model, optim, criterion, x_train, y_train)
 
 # On donne la precision de predilection de notre modele sur les données claires
 precision = accuracy(model, x_test, y_test)
+print(f"La precision des performances du modeles sur les claires est : {precision}")
 
 #print(precision)
 
@@ -197,3 +202,4 @@ precision_chiffre = encrypted_evaluation(eelr, enc_x_test, y_test)
 
 difference = abs(precision_chiffre - precision)
 
+print(f"La precision des performances sur les chiffrés: {precision_chiffre}")

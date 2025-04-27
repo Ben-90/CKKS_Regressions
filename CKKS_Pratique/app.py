@@ -58,7 +58,9 @@ def lineaire():
 
     if request.method == 'POST':
         vect = request.form.get('a', type=float)
+        # le texte claires
         clairs = np.array([vect])
+        #notre chiffré
         encrypted_X = ts.ckks_vector(context, clairs)
         
         # le texte claire 
@@ -69,6 +71,7 @@ def lineaire():
         # Prédiction sur les donnés chiffrées 
         encrypted_predict_y = model.predict(encrypted_X)
         decrypted_predict_y = encrypted_predict_y.decrypt()[0]
+
         # Prediction sur les données clairs
         predict_clair = model.predict(clairs)[0]
 
@@ -189,7 +192,7 @@ def logistique():
         temps_mis_clair = time.time() -t
 
         # Precision de la performance de notre modele 
-        precision_performance_clairs = logistic.precision
+        precision_performance_clairs = logistic.precision.item()
 
 
         #===================================================================#

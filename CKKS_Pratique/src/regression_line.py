@@ -3,6 +3,7 @@ import tenseal as ts
 from sklearn.datasets import load_iris
 import time
 import matplotlib.pyplot as plt
+import tenseal as ts
 
 class LinearRegression:
     def __init__(self):
@@ -13,8 +14,7 @@ class LinearRegression:
         return f"f(x) = {self.beta0} + {self.beta1}*x"
 
     def fit(self,x,y):
- # x: array of data points
- # y: array of data points
+ 
         assert len(x)==len(y)
         x_avg = sum(x)/len(x)
         y_avg = sum(y)/len(y)
@@ -64,24 +64,39 @@ model.fit(x,y)
 
 
 
-def Precision_lr_clair(model, x, y):
-    out = model.predict(x)
-    correct = abs(y - out) 
+def Precision_lr_clair(model, x_clair, y_clair):
+    out = model.predict(x_clair)
+    correct = abs(y_clair - out) <0.5
     return correct.mean()
+    #return f" La prediction de nos données claires : {out[:5]}"
 
-
-def Precision_lr_chiff(model, enc_x_test, y):
-
-    encrypted_X = ts.ckks_vector(context, enc_x_test)
-    encrypted_predicted_y = model.predict(encrypted_X)
-    dechiff_du_predict_y = encrypted_predicted_y.decrypt()
-    
-    correct = abs(y - dechiff_du_predict_y )
-    return correct.mean()
-
+# Le chiffré qu'on a utilisé 
 encrypted_X = ts.ckks_vector(context,x)
 
-precision_des_claires = Precision_lr_clair(model, x, y)
-precision_des_chiffres= Precision_lr_chiff(model, x, y)
-differ_de_precision = round(abs(Precision_lr_clair(model, x, y) - Precision_lr_chiff(model, x, y)), 10)
+# La precision de notre modele sur les chiffrées
+def Precision_lr_chiff(model, enc_x, y_clair):
+    
+    # prediction de notre chiffre
+    encrypted_predicted_y = model.predict(enc_x)
+    # dechiffroons la predictions
+    dechiff_predicted_y = encrypted_predicted_y.decrypt()
+    # On convertis en classe numpy 
+    #dechiff_predicted_y = np.array(dechiff_predicted_y) 
+   
+    
+    correct = abs(y_clair - dechiff_predicted_y ) <0.5
+    return correct.mean()
+    #return  f"données predits sur les chiffrés après dechiffrement : {dechiff_predicted_y[:5]}"
+    #return dechiff_predicted_y
 
+
+
+precision_des_claires = Precision_lr_clair(model, x, y)
+precision_des_claires
+precision_des_chiffres= Precision_lr_chiff(model, encrypted_X, y)
+differ_de_precision = abs(precision_des_chiffres - precision_des_claires)
+
+#print(precision_des_claires)
+#print(precision_des_chiffres)
+# print(f'Les donnees de x : {x}')
+# print(f'les données de y : {y}')
